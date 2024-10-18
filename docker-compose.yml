@@ -1,0 +1,21 @@
+version: '3.8'
+services:
+  mysql:
+    image: mysql:8.0 # Versión de MySQL
+    container_name: my_mysql_container
+    environment:
+      MYSQL_ROOT_PASSWORD: root_password # Cambia la contraseña de root
+      MYSQL_DATABASE: my_database # Nombre de la base de datos
+      MYSQL_USER: user # Nombre de usuario
+      MYSQL_PASSWORD: user_password # Contraseña del usuario
+    ports:
+      - '3306:3306' # Mapea el puerto 3306 del contenedor a tu máquina local
+    volumes:
+      - ./mysql_data:/var/lib/mysql # Persiste los datos
+    networks:
+      - my_network
+    restart: always
+
+networks:
+  my_network:
+    driver: bridge
